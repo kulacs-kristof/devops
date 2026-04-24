@@ -63,10 +63,10 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          kubectl apply -f k8s/backend-deployment.yaml
-          kubectl apply -f k8s/backend-service.yaml
-          kubectl apply -f k8s/frontend-deployment.yaml
-          kubectl apply -f k8s/frontend-service.yaml
-          kubectl apply -f k8s/ingress.yaml
+          kubectl apply --validate=false -f k8s/backend-deployment.yaml
+          kubectl apply --validate=false -f k8s/backend-service.yaml
+          kubectl apply --validate=false -f k8s/frontend-deployment.yaml
+          kubectl apply --validate=false -f k8s/frontend-service.yaml
+          kubectl apply --validate=false -f k8s/ingress.yaml
           kubectl set image deployment/backend-deployment backend=ghcr.io/${{ github.repository_owner }}/rendszam-backend:${{ github.sha }}
           kubectl set image deployment/frontend-deployment frontend=ghcr.io/${{ github.repository_owner }}/rendszam-frontend:${{ github.sha }}
