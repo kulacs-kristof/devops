@@ -58,6 +58,8 @@ A projekt `k8s/ingress.yaml` fájlja egy Ingress-t definiál a `kulacs-beadando.
 - `/` útvonal a frontend szolgáltatásra irányít
 - `/api` útvonal a backend szolgáltatásra irányít
 
+> Az Ingress controllernek telepítve kell lennie a klaszterben, és az `nginx` ingress class-ot kell használnia.
+
 ## GitHub Actions
 
 A projekt tartalmaz egy GitHub Actions workflow-t a `.github/workflows/ci.yml` fájlban.
