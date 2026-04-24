@@ -68,6 +68,16 @@ Ez a workflow a `main` ágra történő push esetén, illetve manuális indítá
 
 - lekéri a repository tartalmát
 - telepíti a backend függőségeit
-- felépíti a backend és frontend Docker képeket
+- felépíti és feltölti a backend és frontend Docker képeket a GitHub Container Registry-be
+- telepíti a Kubernetes manifesteket a klaszterre
+- beállítja a deploymentekhez a legfrissebb image-eket
 
-A workflow futtatása után a CI állapotot a GitHub Actions felületén láthatod.
+### Szükséges titkok
+
+A GitHub repository titkai között add hozzá:
+
+- `KUBE_CONFIG_DATA` – base64 kódolt kubeconfig fájl a klaszteredhez
+
+A GitHub Container Registry-hez a workflow a beépített `GITHUB_TOKEN`-ot használja.
+
+Ha a klasztered és az ingress működik, a frissített alkalmazás az `https://kulacs-beadando.jcloud.jedlik.cloud` címen lesz elérhető.
