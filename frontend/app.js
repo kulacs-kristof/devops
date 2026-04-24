@@ -1,4 +1,6 @@
-const BACKEND_URL = '';
+const BACKEND_URL = ['localhost', '127.0.0.1'].includes(window.location.hostname)
+  ? 'http://localhost:3000'
+  : '';
 
 const form = document.getElementById('lookup-form');
 const plateInput = document.getElementById('plate-input');
