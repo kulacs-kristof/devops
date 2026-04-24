@@ -78,6 +78,6 @@ A GitHub repository titkai között add hozzá:
 
 - `KUBE_CONFIG_DATA` – base64 kódolt kubeconfig fájl a klaszteredhez
 
-A GitHub Container Registry-hez a workflow a beépített `GITHUB_TOKEN`-ot használja.
+A workflow `GHCR_PAT` titkot fog használni Docker image push-hoz. Ha nincs beállítva, a beépített `GH_TOKEN` lesz az alapértelmezett.
 
 Ha a klasztered és az ingress működik, a frissített alkalmazás az `https://kulacs-beadando.jcloud.jedlik.cloud` címen lesz elérhető.
