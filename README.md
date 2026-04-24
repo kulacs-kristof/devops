@@ -53,7 +53,7 @@ A frontend szolgáltatás alapértelmezett portja `80`.
 
 ## Ingress
 
-A projekt `k8s/ingress.yaml` fájlja egy Ingress-t definiál a `kulacs-beadando.jcloud.jedlik.eu` hostra.
+A projekt `k8s/ingress.yaml` fájlja egy Ingress-t definiál a `kulacs-beadando.jcloud.jedlik.cloud` hostra.
 
 - `/` útvonal a frontend szolgáltatásra irányít
 - `/api` útvonal a backend szolgáltatásra irányít
