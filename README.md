@@ -83,4 +83,6 @@ A workflow `GHCR_PAT` titkot fog használni Docker image push-hoz. Ha nincs beá
 
 A `KUBE_CONFIG_DATA`-nak NEM szabad `localhost:8080`-ra mutatnia, mert a GitHub Actions futtató környezetből ez a cím nem érhető el. Használj olyan kubeconfiget, amely egy valóban elérhető Kubernetes API szerverhez csatlakozik.
 
+A workflow most megjeleníti a kiválasztott `server:` címet is, így könnyebb ellenőrizni, hogy valóban a távoli klasztert használja.
+
 Ha a klasztered és az ingress működik, a frissített alkalmazás az `https://kulacs-beadando.jcloud.jedlik.cloud` címen lesz elérhető.
