@@ -29,7 +29,7 @@ A frontend lehetővé teszi egy rendszám bevitelét, a backend pedig visszaadja
    docker run -p 80:80 rendszam-frontend
    ```
 
-A frontend alapértelmezés szerint a Kubernetes `backend-service` nevű backend szolgáltatásra hivatkozik. Lokális teszteléshez a `frontend/app.js` fájlban módosíthatod a `BACKEND_URL` változót `http://localhost:3000` értékre.
+A frontend a `/api` relatív útvonalon keresztül kommunikál a backenddel. Lokális teszteléshez ugyanígy használhatod a `http://localhost/api/lookup` URL-t, ha a backend és a frontend ugyanazon a hoston érhető el.
 
 ## Kubernetes telepítés
 
@@ -46,9 +46,18 @@ kubectl apply -f k8s/backend-deployment.yaml
 kubectl apply -f k8s/backend-service.yaml
 kubectl apply -f k8s/frontend-deployment.yaml
 kubectl apply -f k8s/frontend-service.yaml
+kubectl apply -f k8s/ingress.yaml
 ```
 
 A frontend szolgáltatás alapértelmezett portja `80`.
+
+## Ingress
+
+A projekt `k8s/ingress.yaml` fájlja egy Ingress-t definiál a `kulacs-beadando.jcloud.jedlik.eu` hostra.
+
+- `/` útvonal a frontend szolgáltatásra irányít
+- `/api` útvonal a backend szolgáltatásra irányít
+
 ## GitHub Actions
 
 A projekt tartalmaz egy GitHub Actions workflow-t a `.github/workflows/ci.yml` fájlban.

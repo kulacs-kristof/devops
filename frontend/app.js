@@ -1,4 +1,4 @@
-const BACKEND_URL = 'http://backend-service:3000';
+const BACKEND_URL = '';
 
 const form = document.getElementById('lookup-form');
 const plateInput = document.getElementById('plate-input');
