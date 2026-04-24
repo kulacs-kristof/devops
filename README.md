@@ -77,7 +77,10 @@ Ez a workflow a `main` ágra történő push esetén, illetve manuális indítá
 A GitHub repository titkai között add hozzá:
 
 - `KUBE_CONFIG_DATA` – base64 kódolt kubeconfig fájl a klaszteredhez
+- `GHCR_PAT` – személyes hozzáférési token a GitHub Container Registry-hez, `read:packages` és `write:packages` jogosultsággal
 
-A workflow `GHCR_PAT` titkot fog használni Docker image push-hoz. Ha nincs beállítva, a beépített `GH_TOKEN` lesz az alapértelmezett.
+A workflow `GHCR_PAT` titkot fog használni Docker image push-hoz. Ha nincs beállítva, a beépített `GITHUB_TOKEN` lesz az alapértelmezett.
+
+A `KUBE_CONFIG_DATA`-nak NEM szabad `localhost:8080`-ra mutatnia, mert a GitHub Actions futtató környezetből ez a cím nem érhető el. Használj olyan kubeconfiget, amely egy valóban elérhető Kubernetes API szerverhez csatlakozik.
 
 Ha a klasztered és az ingress működik, a frissített alkalmazás az `https://kulacs-beadando.jcloud.jedlik.cloud` címen lesz elérhető.

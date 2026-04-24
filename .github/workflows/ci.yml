@@ -61,11 +61,21 @@ jobs:
           mkdir -p $HOME/.kube
           echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > $HOME/.kube/config
 
+      - name: Validate remote cluster access
+        run: |
+          if grep -q 'localhost:8080' $HOME/.kube/config; then
+            echo "ERROR: KUBE_CONFIG_DATA points to localhost:8080, which is not accessible from GitHub Actions."
+            echo "Please use a kubeconfig for a remotely accessible cluster."
+            exit 1
+          fi
+          kubectl version --client
+          kubectl cluster-info
+
       - name: Deploy to Kubernetes
         run: |
           kubectl apply --validate=false -f k8s/backend-deployment.yaml
           kubectl apply --validate=false -f k8s/backend-service.yaml
-          kubectl apply --validate=false -f k8s/frontend-deployment.yaml
+          kubectl apply --validate=false -f k8s/frontend-service.yaml
           kubectl apply --validate=false -f k8s/frontend-service.yaml
           kubectl apply --validate=false -f k8s/ingress.yaml
           kubectl set image deployment/backend-deployment backend=ghcr.io/${{ github.repository_owner }}/rendszam-backend:${{ github.sha }}
